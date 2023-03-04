@@ -32,7 +32,7 @@ public class SingularityBlocks {
                     lightningDamage = 10;
                     lightning = 2;
                     lightningLength = 10;
-                    lightningColor = red;
+                    lightningColor = Color.red;
                     splashDamageRadius = 30f;
                     splashDamage = 30f * 1.5f;
                     ammoMultiplier = 5f;
