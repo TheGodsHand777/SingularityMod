@@ -1,49 +1,67 @@
 package singularity.content;
+
 import arc.graphics.Color;
-import mindustry.entities.bullet.*;
-import mindustry.world.Block;
-import mindustry.world.blocks.defense.turrets.*;
-import mindustry.type.*;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
-import mindustry.content.Fx;
-import mindustry.graphics.Layer;
-import mindustry.content.StatusEffects;
-
-import mindustry.gen.Sounds;
+import mindustry.entities.bullet.LaserBulletType;
+import mindustry.world.Block;
+import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.meta.Stat;
+import mindustry.world.meta.StatUnit;
+import mindustry.world.meta.StatValue;
 
 import static mindustry.type.ItemStack.with;
-
 
 public class SingularityBlocks {
 
     public static Block miracle;
 
     public static void load() {
-        miracle = new PowerTurret("miracle") {{
+        miracle = new ItemTurret("miracle") {{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
-            coolant(Liquids.water, 0.2f);
-            size = 2;
-            range = 190f;
-            reload = 31f;
-            recoil = 3f;
-            powerUse = 6.0f;
-            rotateSpeed = 10.0f;
-            shootEffect = Fx.none;
-            shootType = new LaserBulletType(30f) {{
-                length = 200f;
-                width = 8f;
-                lifetime = 60f;
-                colors = new Color[]{Color.valueOf("#FFD5FF"), Color.valueOf("#FF74FF")};
-                shootEffect = Fx.hitLaser;
-                hitEffect = Fx.hitLaser;
-                despawnEffect = Fx.none;
-                pierce = true;
-                pierceCap = 5;
-                pierceBuilding = true;
-            }};
-            shootSound = Sounds.laser;
-            limitRange();
+            size = 3;
+            recoilAmount = 4f;
+            reloadTime = 60f;
+            restitution = 0.05f;
+            range = 400f;
+            inaccuracy = 10f;
+            rotateSpeed = 1.5f;
+            shootShake = 4f;
+            shootSound = Sounds.laserblast;
+            continuous = true;
+
+            ammo(
+                    Items.pyratite, new LaserBulletType(30) {{
+                        length = 400f;
+                        width = 12f;
+                        damage = 45f;
+                        lifetime = 24f;
+                        hitEffect = Fx.hitLancer;
+                        colors = new Color[]{Color.valueOf("#f5c77f"), Color.valueOf("#e7635a"), Color.white};
+                        despawnEffect = Fx.none;
+                        pierce = true;
+                        pierceBuilding = true;
+                        pierceCap = 5;
+                        collidesAir = false;
+                    }}
+            );
+
+            coolant(Liquids.water, 0.5f);
+            size = 4;
+            health = 600;
+            powerUse = 60f;
+            maxHeat = 0.75f;
+            heatColor = Color.red;
+            heatCapacity = 1200f;
+
+            stats.add(Stat.heatCapacity, new StatValue() {
+                @Override
+                public void display(StatUnit unit, StringBuilder builder) {
+                    super.display(unit, builder);
+                    builder.append(" (").append((int) (maxHeat * 100)).append("%)");
+                }
+            });
         }};
     }
 }
