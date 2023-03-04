@@ -38,12 +38,6 @@ public class SingularityBlocks {
                     splashDamageRadius = 25f * 0.75f;
                     splashDamage = 33f;
                 }},
-                Liquids.water,new LiquidBulletType(Liquids.water) {{
-                    knockback = 2f;
-                    reloadMultiplier = 1.5f;
-                    drag = 0.01f;
-                    layer = Layer.bullet - 2f;
-                }},
                 Items.blastCompound, new MissileBulletType(3.7f, 10) {{
                     reloadMultiplier = 0.3f;
                     width = 16f;
