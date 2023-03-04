@@ -21,18 +21,20 @@ public class SingularityBlocks {
         miracle = new ItemTurret("miracle") {{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
             size = 3;
-            recoilAmount = 4f;
+            recoil = 4f;
             reloadTime = 60f;
             restitution = 0.05f;
             range = 400f;
             inaccuracy = 10f;
             rotateSpeed = 1.5f;
-            shootShake = 4f;
+            shake = 4f;
             shootSound = Sounds.laserblast;
+            shots = 1;
+            shotDelay = 0f;
             continuous = true;
 
             ammo(
-                    Items.pyratite, new LaserBulletType(30) {{
+                    Items.pyratite, new LaserBulletType(30){{
                         length = 400f;
                         width = 12f;
                         damage = 45f;
@@ -47,10 +49,10 @@ public class SingularityBlocks {
                     }}
             );
 
-            coolant(Liquids.water, 0.5f);
             size = 4;
             health = 600;
-            powerUse = 60f;
+            consumes.power(60f);
+            consumes.liquid(Liquids.water, 0.5f);
             maxHeat = 0.75f;
             heatColor = Color.red;
             heatCapacity = 1200f;
