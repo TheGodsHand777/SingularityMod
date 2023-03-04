@@ -1,3 +1,5 @@
+package singularity.content
+
 import arc.graphics.Color;
 import mindustry.entities.bullet.*;
 import mindustry.world.Block;
