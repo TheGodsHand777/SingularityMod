@@ -1,5 +1,4 @@
 package singularity.content;
-
 import arc.graphics.Color;
 import mindustry.entities.bullet.*;
 import mindustry.world.Block;
@@ -21,37 +20,29 @@ public class SingularityBlocks {
     public static Block miracle;
 
     public static void load() {
-        miracle = new ItemTurret("miracle"){{
+        miracle = new PowerTurret("miracle") {{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
-            ammo(
-                    Liquids.water, new LaserBulletType(12f){{
-                        length = 100f;
-                        width = 20f;
-                        lifetime = 120f;
-                        colors = new Color[]{Color.valueOf("#FFD5FF"), Color.valueOf("#FF74FF")};
-                        shootEffect = Fx.hitLaser;
-                        hitEffect = Fx.hitLaser;
-                        despawnEffect = Fx.none;
-                        pierce = true;
-                        pierceCap = 5;
-                        pierceBuilding = true;
-                    }}
-            );
-
+            coolant(Liquids.water, 0.2f);
             size = 2;
             range = 190f;
             reload = 31f;
-            consumeAmmoOnce = false;
-            ammoEjectBack = 3f;
             recoil = 3f;
-            shake = 1f;
-            shoot.shots = 1;
-            shoot.shotDelay = 0.03f;
-
-            ammoUseEffect = Fx.none;
-            scaledHealth = 240;
-            shootSound = Sounds.laserblast;
-
+            powerUse = 6.0f;
+            rotateSpeed = 10.0f;
+            shootEffect = Fx.none;
+            shootType = new LaserBulletType(30f) {{
+                length = 200f;
+                width = 8f;
+                lifetime = 60f;
+                colors = new Color[]{Color.valueOf("#FFD5FF"), Color.valueOf("#FF74FF")};
+                shootEffect = Fx.hitLaser;
+                hitEffect = Fx.hitLaser;
+                despawnEffect = Fx.none;
+                pierce = true;
+                pierceCap = 5;
+                pierceBuilding = true;
+            }};
+            shootSound = Sounds.laser;
             limitRange();
         }};
     }
