@@ -1,5 +1,3 @@
-package singularity.content;
-
 import arc.graphics.Color;
 import mindustry.entities.bullet.*;
 import mindustry.world.Block;
@@ -19,32 +17,23 @@ import static mindustry.type.ItemStack.with;
 public class SingularityBlocks {
 
     public static Block miracle;
-    
+
     public static void load() {
         miracle = new ItemTurret("miracle"){{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
             ammo(
-                Items.blastCompound, new MissileBulletType(3.7f, 10) {{
-                    reloadMultiplier = 0.3f;
-                    lifetime = 10f;
-                    width = 16f;
-                    range = 250f;
-                    height = 16f;
-                    shrinkY = 0f;
-                    lightningDamage = 10;
-                    lightning = 2;
-                    lightningLength = 10;
-                    lightningColor = Color.magenta;
-                    splashDamageRadius = 30f;
-                    splashDamage = 30f * 1.5f;
-                    ammoMultiplier = 5f;
-                    hitEffect = Fx.blastExplosion;
-                    despawnEffect = Fx.blastExplosion;
-
-                    status = StatusEffects.blasted;
-                    statusDuration = 60f;
-                }}
-
+                    Liquids.water, new LaserBulletType(12f){{
+                        length = 100f;
+                        width = 20f;
+                        lifetime = 120f;
+                        colors = new Color[]{Color.valueOf("#FFD5FF"), Color.valueOf("#FF74FF")};
+                        shootEffect = Fx.hitLaser;
+                        hitEffect = Fx.hitLaser;
+                        despawnEffect = Fx.none;
+                        pierce = true;
+                        pierceCap = 5;
+                        pierceBuilding = true;
+                    }}
             );
 
             size = 2;
@@ -54,15 +43,14 @@ public class SingularityBlocks {
             ammoEjectBack = 3f;
             recoil = 3f;
             shake = 1f;
-            shoot.shots = 4;
-            shoot.shotDelay = 3f;
+            shoot.shots = 1;
+            shoot.shotDelay = 0.03f;
 
-            ammoUseEffect = Fx.casing2;
+            ammoUseEffect = Fx.none;
             scaledHealth = 240;
-            shootSound = Sounds.shootBig;
+            shootSound = Sounds.laserblast;
 
             limitRange();
         }};
-        
     }
 }
