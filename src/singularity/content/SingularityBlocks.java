@@ -1,4 +1,4 @@
-package singularity.content
+package singularity.content;
 
 import arc.graphics.Color;
 import mindustry.entities.bullet.*;
