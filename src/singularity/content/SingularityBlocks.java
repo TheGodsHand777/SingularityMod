@@ -26,13 +26,15 @@ public class SingularityBlocks {
             ammo(
                 Items.blastCompound, new MissileBulletType(3.7f, 10) {{
                     reloadMultiplier = 0.3f;
+                    lifetime = 10f;
                     width = 16f;
+                    range = 250f;
                     height = 16f;
                     shrinkY = 0f;
                     lightningDamage = 10;
                     lightning = 2;
                     lightningLength = 10;
-                    lightningColor = Color.red;
+                    lightningColor = Color.magenta;
                     splashDamageRadius = 30f;
                     splashDamage = 30f * 1.5f;
                     ammoMultiplier = 5f;
